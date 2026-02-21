@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Articles Collection
+    match /articles/{articleId} {
+      // السماح بالقراءة للجميع
+      allow read: if true;
+      
+      // السماح بالكتابة فقط للمصادقين (Worker)
+      allow write: if request.auth != null;
+      
+      // السماح بتحديث المشاهدات
+      allow update: if request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['views', 'likes', 'updatedAt']);
+    }
+    
+    // Categories Collection
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Automation Logs Collection
+    match /automation_logs/{logId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+    
+    // Social Media Posts Collection
+    match /social_posts/{postId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+  }
+}

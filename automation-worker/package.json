@@ -1,0 +1,25 @@
+{
+  "name": "tareq-automation-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker للأتمتة - منصة طارق الإخبارية",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0",
+    "firebase-admin": "^12.0.0",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.33.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "wrangler": "^3.22.0"
+  }
+}
